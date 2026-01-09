@@ -48,9 +48,9 @@ export const LEQ = m => n => IS_ZERO(SUB(m)(n));  // no negative numbers, subtra
 export const GT  = m => n => NOT(LEQ(m)(n));
 export const LT  = m => n => NOT(LEQ(n)(m));
 
-// A helper that takes a pair (n, n+1) and returns (n+1, n+2)
+// A helper that takes a pair (n, m) and returns (m, m+1)
 const PHI = p => PAIR(SECOND(p))(SUCC(SECOND(p)));
-// PRED starts at (0, 0), applies PHI 'n' times, then takes the FIRST element
+// PRED starts at (0, 0), applies PHI 'n' times, then takes the FIRST element (clever!)
 export const PRED = n => FIRST(n(PHI)(PAIR(ZERO)(ZERO)));
 // SUBTRACT(m)(n) is just applying PRED to m, n times.
 export const SUB = m => n => n(PRED)(m);
